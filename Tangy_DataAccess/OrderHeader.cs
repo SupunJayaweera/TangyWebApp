@@ -37,6 +37,8 @@ namespace Tangy_DataAccess
         public string City { get; set; }
         [Required]
         public string PostalCode { get; set; }
+
+       
         [Required]
         public string Email { get; set; }
 
