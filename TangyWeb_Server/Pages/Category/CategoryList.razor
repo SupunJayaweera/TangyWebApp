@@ -3,6 +3,11 @@
 @inject ICategoryRepository _categoryRepository
 @inject  IJSRuntime _jsRuntime
 
+@using Tangy_Common
+
+@attribute [Authorize(Roles = SD.Role_Admin)]
+
+
 <_DeleteConfiremation IsParentComponentProcessing="IsLoading" ConfirmationChanged="ConfirmDeleteClick"> </_DeleteConfiremation>
 
 <div class="row mt-4">
@@ -59,6 +64,8 @@
     private IEnumerable<CategoryDTO> Categories { get; set; } = new List<CategoryDTO>();
     public bool IsLoading { get; set; }
     private int DeleteCategoryId { get; set; } = 0;
+
+    
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

@@ -17,20 +17,21 @@ namespace Tangy_Business.Repository
             _db = db;
             _mapper = mapper;
         }
+
         public async Task<CategoryDTO> Create(CategoryDTO objDTO)
         {
             var obj = _mapper.Map<CategoryDTO, Category>(objDTO);
             obj.CreatedDate = DateTime.Now;
-
             var addedObj = _db.Categories.Add(obj);
             await _db.SaveChangesAsync();
 
             return _mapper.Map<Category, CategoryDTO>(addedObj.Entity);
         }
+
         public async Task<int> Delete(int id)
         {
             var obj = await _db.Categories.FirstOrDefaultAsync(u => u.Id == id);
-            if(obj != null)
+            if (obj != null)
             {
                 _db.Categories.Remove(obj);
                 return await _db.SaveChangesAsync();
@@ -40,8 +41,8 @@ namespace Tangy_Business.Repository
 
         public async Task<CategoryDTO> Get(int id)
         {
-            var obj = await _db.Categories.FirstOrDefaultAsync(u => u.Id == id);  
-            if(obj != null) 
+            var obj = await _db.Categories.FirstOrDefaultAsync(u => u.Id == id);
+            if (obj != null)
             {
                 return _mapper.Map<Category, CategoryDTO>(obj);
             }
@@ -64,6 +65,7 @@ namespace Tangy_Business.Repository
                 return _mapper.Map<Category, CategoryDTO>(objFromDb);
             }
             return objDTO;
+
         }
     }
 }
