@@ -13,6 +13,17 @@ namespace Tangy_Business.Repository
     {
         private readonly ApplicationDbContext _db;
         private readonly IMapper _mapper;
+
+        public OrderRepository(ApplicationDbContext db, IMapper mapper)
+        {
+            _db = db;
+            _mapper = mapper;
+        }
+        public Task<OrderHeaderDTO> CancelOrder(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<OrderDTO> Create(OrderDTO objDTO)
         {
             try
@@ -32,15 +43,14 @@ namespace Tangy_Business.Repository
                 return new OrderDTO()
                 {
                     OrderHeader = _mapper.Map<OrderHeader, OrderHeaderDTO>(obj.OrderHeader),
-                    OrderDetails = _mapper.Map<IEnumerable<OrderDetail>, IEnumerable<OrderDetailDTO>>(obj.OrderDetails).ToList(),
-                }; 
-
+                    OrderDetails = _mapper.Map<IEnumerable<OrderDetail>, IEnumerable<OrderDetailDTO>>(obj.OrderDetails).ToList()
+                };
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return objDTO; 
+            return objDTO;
         }
 
         public async Task<int> Delete(int id)

@@ -20,12 +20,12 @@ namespace Tangy_DataAccess
         public int Count { get; set;}
 
         [Required]
-        public int Price { get; set; }
+        public double Price { get; set; }
 
         [Required]
-        public int Size { get; set; }
+        public string Size { get; set; }
 
         [Required]
-        public int ProductName { get; set; }
+        public string ProductName { get; set; }
     }
 }
